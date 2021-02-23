@@ -9,6 +9,6 @@ Router.get('/',(req,res)=>{
 Router.post('/',(req,res)=>{
      console.log(req.body);
      console.log(req.files.profile_image);
-})
+});
 
 module.exports = Router;
