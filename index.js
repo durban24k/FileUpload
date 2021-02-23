@@ -2,7 +2,7 @@ require('dotenv').config({path:'./.env'});
 const express=require('express');
 const logger=require('morgan');
 const path=require('path');
-const file_upload=require('express-fileupload');
+const fileUpload=require('express-fileupload');
 
 // Initiate Express Application
 const app=express();
@@ -15,6 +15,11 @@ app.set('view engine','hbs');
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(logger('combined'));
+app.use(fileUpload());
+
+const Index=require('./routes/file');
+
+app.use('/file',Index);
 
 // Port Listening
 const port=process.env.PORT || 3000;
