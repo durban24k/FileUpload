@@ -185,6 +185,32 @@
       button:hover {
       background:  #a3c2c2;
       }
+      .profile-container{
+        width:100%;
+        height:500px;
+        background:whitesmoke;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+      .psticker{
+        background:white;
+        width:250px;
+        height:400px;
+        box-shadow: 0 0 10px 0  #669999;
+        border-radius:10px;
+        text-align:center;
+      }
+      .psticker img{
+        width:250px;
+        height:250px;
+        border-radius:inherit;
+        object-fit:contain;
+      }
+      .psticker .pname{
+        width:100%;
+        height:100px;
+      }
       @media (min-width: 568px) {
       .name-item, .city-item {
       display: flex;
@@ -205,9 +231,17 @@
   </head>
   <body>
     <div class="testbox">
-      <form action="/profile" method="POST" enctype="multipart/form-data" role="form">
+      <form action="/file/profile" method="POST" enctype="multipart/form-data" role="form">
         <div class="banner">
           <h1>PROFILE - NODEJS & MySQL</h1>
+        </div>
+        <div class="messages">
+          {{#if messages.alert_msg }}
+            <span style="background:rgb(248, 225, 225);color:rgb(255, 0, 0);padding:10px;border-radius:10px;"><i class="fas fa-exclamation-circle"></i> {{ messages.alert_msg }}</span>
+          {{/if}}
+          {{#if messages.success_msg }}
+            <span style="background:rgb(225, 248, 227);color:rgb(0, 121, 0);padding:10px;border-radius:10px;"><i class="fas fa-thumbs-up"></i> {{ messages.success_msg }}</span>
+          {{/if}}
         </div>
         <div class="colums">
           <div class="item">
@@ -219,6 +253,14 @@
           <button type="submit">Show Profile</button>
         </div>
       </form>
+    </div>
+    <div class="profile-container">
+      <div class="psticker">
+        <img src="/images/profile/{{image_name}}" alt="Profile Picture">
+        <div class="pname">
+          <h3>Name: {{name}}</h3>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -11,6 +11,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const app=express();
 
 // Setting the View Engine
+app.use(express.static(path.join(__dirname,'public')));
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','hbs');
 

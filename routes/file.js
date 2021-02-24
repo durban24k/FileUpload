@@ -7,9 +7,8 @@ Router.get('/',(req,res)=>{
 });
 
 Router.post('/',(req,res)=>{
-     console.log(req.body);
-     console.log(req.files);
-
+     // console.log(req.body);
+     // console.log(req.files);
      const {
           name
      }=req.body;
@@ -33,7 +32,7 @@ Router.post('/',(req,res)=>{
                     });
                });
           }else{
-               req.flash('alert_msg','This format is not allowed , please upload file with ".png",".gif",".jpg"');
+               req.flash('alert_msg','This format is not allowed , please upload file with ".png",".jpg"');
                res.redirect('/file');
           }
      }
@@ -44,7 +43,23 @@ Router.get('/profile',(req,res)=>{
 });
 
 Router.post('/profile',(req,res)=>{
-     console.log(req.body);zoom
+     const id=parseInt(req.body.profile_id,10);
+     const db=require('../config/db');
+     const sql="SELECT * FROM images WHERE image_id = ?";
+     db.query(sql,[id],(error,results,fields)=>{
+          if(error) throw error;
+          console.log(results);
+          if(results<1){
+               req.flash('alert_msg','Profile Not Found!!');
+               res.redirect('/file/profile');
+          }else{
+               res.render('profile',{
+                    name:results[0].name,
+                    image_name:results[0].image_url
+               });
+          }
+          
+     });
 });
 
 module.exports = Router;
