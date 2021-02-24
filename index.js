@@ -20,7 +20,6 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(logger('combined'));
 app.use(fileUpload());
-app.use(express.json());
 
 const Index=require('./routes/file');
 
