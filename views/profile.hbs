@@ -250,17 +250,19 @@
           </div>
         </div>
         <div class="btn-block">
-          <button type="submit">Show Profile</button>
+          <button type="submit">Search Profile</button>
         </div>
       </form>
     </div>
-    <div class="profile-container">
-      <div class="psticker">
-        <img src="/images/profile/{{image_name}}" alt="Profile Picture">
-        <div class="pname">
-          <h3>Name: {{name}}</h3>
+    {{#if info}}
+      <div class="profile-container">
+        <div class="psticker">
+          <img src="/images/profile/{{info.image_url}}" alt="Profile Picture">
+          <div class="pname">
+            <h3>Name: {{info.name}}</h3>
+          </div>
         </div>
       </div>
-    </div>
+    {{/if}}
   </body>
 </html>

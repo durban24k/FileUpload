@@ -28,7 +28,7 @@ Router.post('/',(req,res)=>{
                     db.query(sql,{name,image_url:image_name,created_at:timestamp,updated_at:timestamp},(error,results,fields)=>{
                          if(error) throw error;
                          req.flash('success_msg','Image Added Successfully!');
-                         res.redirect('/file');
+                         res.redirect('/file/profile');
                     });
                });
           }else{
@@ -48,14 +48,13 @@ Router.post('/profile',(req,res)=>{
      const sql="SELECT * FROM images WHERE image_id = ?";
      db.query(sql,[id],(error,results,fields)=>{
           if(error) throw error;
-          console.log(results);
+          // console.log(results);
           if(results<1){
                req.flash('alert_msg','Profile Not Found!!');
                res.redirect('/file/profile');
           }else{
                res.render('profile',{
-                    name:results[0].name,
-                    image_name:results[0].image_url
+                    info:results[0]
                });
           }
           
